@@ -1,35 +1,36 @@
 # SQLServerTraceFlags
 
 *Purpose:* A Markdown-based repository for SQL Server trace flags, both documented and undocumented. Flags are organized in a topical manner, with links to relevant, useful, and generally trustworthy sources.
+
 *Editor/Primary Compiler:* Aaron Morelli ([Blog](http://sqlcrossjoin.wordpress.com/) | [Twitter](https://twitter.com/sqlcrossjoin))
 
 *Disclaimer:* The majority of these flags are undocumented by Microsoft, and therefore unsupported. The author has experimented with only a handful of these flags and cannot vouch for complete accuracy in the descriptions provided, nor has authority to do so. The author assumes no responsibility for any negative (or positive!) consequences arising from the use or misuse of these trace flags in any production or non-production environment. Use at your own risk.
 
-Change Log
-Categories
+[Change Log](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/CHANGELOG.md)
+
+[Categories](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/CATEGORIES.md)
 
 *A note on the “Links” column:*
 The “Links” column contains hyperlinks to online content that provides a definition, detailed explanation, or practical example of using the trace flag. These links are typically KB articles, whitepapers, or blog articles from generally reputable sources (especially current or ex-Microsoft employees, and bloggers who demonstrate, in the author’s view, accuracy and trustworthy methodologies).
 
 *Official Trace Flag Documentation from Microsoft:* 
-[Current](http://technet.microsoft.com/en-us/library/ms188396.aspx)
-2014 -- no individual link yet; i.e. same as Current/2016.
-[2012](http://technet.microsoft.com/en-us/library/ms188396(v=sql.110).aspx)
-[2008 R2](http://technet.microsoft.com/en-us/library/ms188396(v=sql.105).aspx)
-[2008](http://technet.microsoft.com/en-us/library/ms188396(v=sql.100).aspx)
-[2005](http://technet.microsoft.com/en-us/library/ms188396(v=sql.90).aspx)
+[Current](http://technet.microsoft.com/en-us/library/ms188396.aspx) 
+[2012](http://technet.microsoft.com/en-us/library/ms188396(v=sql.110).aspx) 
+[2008 R2](http://technet.microsoft.com/en-us/library/ms188396(v=sql.105).aspx) 
+[2008](http://technet.microsoft.com/en-us/library/ms188396(v=sql.100).aspx) 
+[2005](http://technet.microsoft.com/en-us/library/ms188396(v=sql.90).aspx) 
 [TF 4199](http://support.microsoft.com/kb/974006)
 
 *Notable unofficial trace flag repositories:*
-[Technet Wiki article](http://social.technet.microsoft.com/wiki/contents/articles/13105.trace-flags-in-sql-server.aspx)
-[SQL Server Central](http://www.sqlservercentral.com/articles/trace+flags/70131/) (and for [2000 and 7.0](http://www.sqlservercentral.com/articles/Monitoring/traceflags/737/))
-[SQLService.se](http://sqlservice.se/sv/start/blogg/updated-microsoft-sql-server-trace-flag-list.aspx)
-[Amit Banerjee 2012](http://troubleshootingsql.com/2014/01/20/sql-server-2012-trace-flags/)
+[Technet Wiki article](http://social.technet.microsoft.com/wiki/contents/articles/13105.trace-flags-in-sql-server.aspx), 
+[SQL Server Central](http://www.sqlservercentral.com/articles/trace+flags/70131/) (and for [2000 and 7.0](http://www.sqlservercentral.com/articles/Monitoring/traceflags/737/)), 
+[SQLService.se](http://sqlservice.se/sv/start/blogg/updated-microsoft-sql-server-trace-flag-list.aspx), 
+[Amit Banerjee 2012](http://troubleshootingsql.com/2014/01/20/sql-server-2012-trace-flags/), 
 [Database-Wiki](http://database-wiki.com/2012/10/20/documented-sql-server-trace-flags-use-them-cautiously/)
 
 *Print Sources:*
-At this time, only two print sources have been used, and even these are only source material for a handful of trace flags. 
-Kalen Delaney’s [SQL Server 2008 Internals](https://www.amazon.com/Microsoft%C2%AE-Server%C2%AE-Internals-Developer-Reference/dp/0735626243/ref=sr_1_2?ie=UTF8&qid=1477503776&sr=8-2&keywords=Kalen+Delaney+2008) referred to in shorthand as “Kalen2008”
+At this time, only two print sources have been used, and even these are only source material for a handful of trace flags: 
+Kalen Delaney’s [SQL Server 2008 Internals](https://www.amazon.com/Microsoft%C2%AE-Server%C2%AE-Internals-Developer-Reference/dp/0735626243/ref=sr_1_2?ie=UTF8&qid=1477503776&sr=8-2&keywords=Kalen+Delaney+2008) referred to in shorthand as “Kalen2008”, and 
 Ken Henderson’s [SQL Server 2005 Practical Troubleshooting: The Database Engine](https://www.amazon.com/SQL-Server-2005-Practical-Troubleshooting/dp/0321447743/ref=sr_1_1?ie=UTF8&qid=1477503810&sr=8-1&keywords=Ken+Henderson+2005) referred to in shorthand as “Khen2005”
 
 ## Trace Flag Usage and Categorization
@@ -52,7 +53,7 @@ TF 4199 (officially described in [KB974006](http://support.microsoft.com/kb/9740
 - In the same blog series, SQL Sasquatch [points out](http://sql-sasquatch.blogspot.com/2014/01/trace-flag-4199-complex-risk-assessment_6.html) that Microsoft has released several fixes recently that seem to violate the TF 4199 policy described above.
 
 A 5-year-old [blog post](http://sqlblog.com/blogs/andrew_kelly/archive/2009/06/21/trace-flag-groupings.aspx) by Andrew Kelly relays some information from Paul Randal about how trace flags are categorized. This provides some level of insight into how Microsoft categorizes (or perhaps categorized at some point in the past) their trace flags, though even a cursory glance through the lists below show that many flags do not fall into any of the below categories.
-- “25xx, 52xx are DBCC related 
+- 25xx, 52xx are DBCC related 
 - 8xx are buffer pool 
 - 36xx are SQL Server general 'run-time' 
 - 6xx are Storage Engine access methods 
@@ -62,5 +63,5 @@ A 5-year-old [blog post](http://sqlblog.com/blogs/andrew_kelly/archive/2009/06/2
 - 55xx are FILESTREAM 
 - 73xx, 74xx are query execution 
 - 75xx are cursors 
-- 82xx are replication”
+- 82xx are replication
 

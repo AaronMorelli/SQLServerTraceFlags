@@ -3,7 +3,7 @@
 Major initiatives will be logged in this file. The ongoing additions of newly-discovered flags and modifications of descriptions/links to existing flags will not normally be logged here. (Consult the commit history for that level of detail).
 
 | Date | Description |
-| --- | --- |
+| ---------- | ---------------------------------- |
 | 2016-10-26 | Begin migration to Markdown/GitHub |
 | 2016-09-22 | Reviewed KB articles up to and including 2012 SP2 CU14, 2012 SP3 CU5, 2014 SP1 CU8, and 2016 RTM CU2 |
 | 2016-04-27 | Reviewed KB articles up to and including SQL 2012 SP2 CU11, SQL 2012 SP3 CU2, SQL 2014 RTM CU13, and SQL 2014 SP1 CU6 |
