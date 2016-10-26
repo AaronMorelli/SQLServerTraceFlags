@@ -1,6 +1,6 @@
 # Instance Startup, Database Startup, and General Instance Behavior
 
-See also: 4606 (cat), 4614 (cat)
+See also: 4606 ([Security](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Security.md)), 4614 ([Security](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Security.md))
 
 | Flag | Description | Links |
 | ---------- | ----------- | -------- |
