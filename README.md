@@ -4,22 +4,19 @@
 
 *Editor/Primary Compiler:* Aaron Morelli ([Blog](http://sqlcrossjoin.wordpress.com/) | [Twitter](https://twitter.com/sqlcrossjoin))
 
-*Disclaimer:* The majority of these flags are undocumented by Microsoft, and therefore unsupported. The author has experimented with only a handful of these flags and cannot vouch for complete accuracy in the descriptions provided, nor has authority to do so. The author assumes no responsibility for any negative (or positive!) consequences arising from the use or misuse of these trace flags in any production or non-production environment. Use at your own risk.
-
 [Change Log](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/CHANGELOG.md)
 
 [Categories](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/CATEGORIES.md)
 
-*A note on the “Links” column:*
-The “Links” column contains hyperlinks to online content that provides a definition, detailed explanation, or practical example of using the trace flag. These links are typically KB articles, whitepapers, or blog articles from generally reputable sources (especially current or ex-Microsoft employees, and bloggers who demonstrate, in the author’s view, accuracy and trustworthy methodologies).
+*Disclaimer:* The majority of these flags are undocumented by Microsoft, and therefore unsupported. The author has experimented with only a handful of these flags and cannot vouch for complete accuracy in the descriptions provided, nor has authority to do so. The author assumes no responsibility for any negative (or positive!) consequences arising from the use or misuse of these trace flags in any production or non-production environment. Use at your own risk.
 
 *Official Trace Flag Documentation from Microsoft:* 
 [Current](http://technet.microsoft.com/en-us/library/ms188396.aspx) 
-[2012](http://technet.microsoft.com/en-us/library/ms188396(v=sql.110).aspx) 
-[2008 R2](http://technet.microsoft.com/en-us/library/ms188396(v=sql.105).aspx) 
-[2008](http://technet.microsoft.com/en-us/library/ms188396(v=sql.100).aspx) 
-[2005](http://technet.microsoft.com/en-us/library/ms188396(v=sql.90).aspx) 
-[TF 4199](http://support.microsoft.com/kb/974006)
+| [2012](http://technet.microsoft.com/en-us/library/ms188396(v=sql.110).aspx) 
+| [2008 R2](http://technet.microsoft.com/en-us/library/ms188396(v=sql.105).aspx) 
+| [2008](http://technet.microsoft.com/en-us/library/ms188396(v=sql.100).aspx) 
+| [2005](http://technet.microsoft.com/en-us/library/ms188396(v=sql.90).aspx) 
+| [TF 4199](http://support.microsoft.com/kb/974006)
 
 *Notable unofficial trace flag repositories:*
 [Technet Wiki article](http://social.technet.microsoft.com/wiki/contents/articles/13105.trace-flags-in-sql-server.aspx), 
@@ -27,11 +24,12 @@ The “Links” column contains hyperlinks to online content that provides a def
 [SQLService.se](http://sqlservice.se/sv/start/blogg/updated-microsoft-sql-server-trace-flag-list.aspx), 
 [Amit Banerjee 2012](http://troubleshootingsql.com/2014/01/20/sql-server-2012-trace-flags/), 
 [Database-Wiki](http://database-wiki.com/2012/10/20/documented-sql-server-trace-flags-use-them-cautiously/)
+[SQL Handle TF4199 series](http://sql-sasquatch.blogspot.com/2014/01/trace-flag-4199-complex-risk-assessment.html)
 
 *Print Sources:*
 At this time, only two print sources have been used, and even these are only source material for a handful of trace flags: 
 Kalen Delaney’s [SQL Server 2008 Internals](https://www.amazon.com/Microsoft%C2%AE-Server%C2%AE-Internals-Developer-Reference/dp/0735626243/ref=sr_1_2?ie=UTF8&qid=1477503776&sr=8-2&keywords=Kalen+Delaney+2008) referred to in shorthand as “Kalen2008”, and 
-Ken Henderson’s [SQL Server 2005 Practical Troubleshooting: The Database Engine](https://www.amazon.com/SQL-Server-2005-Practical-Troubleshooting/dp/0321447743/ref=sr_1_1?ie=UTF8&qid=1477503810&sr=8-1&keywords=Ken+Henderson+2005) referred to in shorthand as “Khen2005”
+Ken Henderson’s [SQL Server 2005 Practical Troubleshooting: The Database Engine](https://www.amazon.com/SQL-Server-2005-Practical-Troubleshooting/dp/0321447743/ref=sr_1_1?ie=UTF8&qid=1477503810&sr=8-1&keywords=Ken+Henderson+2005) referred to in shorthand as “Khen2005”.
 
 ## Trace Flag Usage and Categorization
 Most (but not all) trace flags can be enabled at SQL Server startup by using the –T (capital letter) startup option. However, most (but not all) trace flags can also be enabled at startup by using the –t (lowercase letter) startup option. (Besides the upper/lowercase difference, the syntax is otherwise identical). However, [this Microsoft article](http://technet.microsoft.com/en-us/library/ms190737.aspx) indicates that other, unknown trace flags are enabled by the lowercase option, and thus the uppercase method should be used except under the direction of Microsoft support.
