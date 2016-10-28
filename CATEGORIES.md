@@ -6,9 +6,9 @@ Within each category, the following sections may be observed:
 - A table of flags, with descriptions and links. 
 
 ### The "Description" column
-Flags that are officially documented in BOL will have a "Doc<release>" tag at the beginning. The <release> is always the *earliest* release in which the flag was document, not necessarily the release in which the flag was introduced.
+Flags that are officially documented in BOL will have a "Doc<release>" tag at the beginning. The <release> is always the earliest release in which the flag was document, not necessarily the release in which the flag was introduced.
 Flags that are *believed* to be informational-only have an "Info" tag at the beginning. Note, however that this repo cannot authoritatively guarantee whether a given flag is only informational; only official Microsoft documentation can do that.
-For flags with longer descriptions and several different sources of info, the text is displayed in alternating normal/italics case to enable quick identification of the changes in source.
+For flags with longer descriptions and several different sources of info, the text is displayed in alternating normal/*italics* case to enable quick identification of the changes in source.
 
 ### The "Links" column 
 The “Links” column contains hyperlinks to online content that provides a definition, detailed explanation, or practical example of using the trace flag. These links are typically KB articles, whitepapers, or blog articles from generally reputable sources (especially current or ex-Microsoft employees, and bloggers who demonstrate, in the author’s view, accuracy and trustworthy methodologies).
@@ -49,7 +49,7 @@ The “Links” column contains hyperlinks to online content that provides a definit
 
 
 ## Legacy and Other
-1. [SQL 2000 Engine])(https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/SQL2KEng.md)
+1. [SQL 2000 Engine](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/SQL2KEng.md)
 2. [SQL 2000 Optimization/Query Performance Fixes](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/2KOptFixes.md)
 3. [SQL 2000 Query Execution](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/2KQueryExec.md)
 4. [Pre-SQL 2000 Flags](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Pre2K.md)
