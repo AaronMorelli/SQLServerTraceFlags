@@ -2,26 +2,39 @@
 
 (Reminder: [Official BOL location](http://technet.microsoft.com/en-us/library/ms188396.aspx))
 
-*See also:* Several trace flags affect or control memory dump behavior that is specific to SQLOS scheduling. These flags have been placed in the [Exceptions and Memory Dump Behavior](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/ExceptMemDump.md)
-section: 1260, 1262, 1264, 8024. Also, note that TFs 2466, 2467, and 2479 (placed in the [Query Execution](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/QueryExec.md) section) all adjust how the runtime DOP is calculated for a parallel plan, and affect different parts of a formula that is inherently focused on the number of free workers on the NUMA nodes on a system.
+*See also:* Several trace flags affect or control memory dump behavior that is specific to SQLOS scheduling. These flags have been placed in 
+the [Exceptions and Memory Dump Behavior](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/ExceptMemDump.md)
+section: 1260, 1262, 1264, 8024. Also, note that TFs 2466, 2467, and 2479 (placed in 
+the [Query Execution](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/QueryExec.md) section) all adjust how the 
+runtime DOP is calculated for a parallel plan, and affect different parts of a formula that is inherently focused on the number of free 
+workers on the NUMA nodes on a system.
 
 The longer descriptions and larger number of links make a table format impractical.
 
-TODO: ensure 6531 and 6533 are in the see also of query execution
+TODO: ensure 6531, 6532, 6533, and 6534 probably should be moved to the query execution section (in the fix flags section) and placed in the See Also here
 
+## Functionality Toggles
 
-**839** [CSS](http://blogs.msdn.com/b/psssql/archive/2010/04/02/how-it-works-soft-numa-i-o-completion-thread-lazy-writer-workers-and-memory-nodes.aspx): 
-(Apparently) forces SQL Server to treate all NUMA memory as "flat", as if it was SMP.
+**839** (Apparently) forces SQL Server to treate all NUMA memory as "flat", as if it was SMP.
+[CSS](http://blogs.msdn.com/b/psssql/archive/2010/04/02/how-it-works-soft-numa-i-o-completion-thread-lazy-writer-workers-and-memory-nodes.aspx)
 
 **1531** [Ewald](http://sqlonice.com/anatomy-and-psychology-of-a-sqlos_spinlock/) speculates that it may be involved in writing certain Spinlock events to a ring buffer.
 
-**1615** Khen2005, page 385 (paraphrased): directs SQL to use threads instead of fiber even if the "lightweight pooling" config option is on. (Apparently, sometimes SQL wouldn’t start successfully when using lightweight pooling, and so this lets you get SQL up and running, so that you can turn the config option off)	
+**1615** Khen2005, page 385 (paraphrased): directs SQL to use threads instead of fiber even if the "lightweight pooling" config option is on. 
+(Apparently, sometimes SQL wouldn’t start successfully when using lightweight pooling, and so this lets you get SQL up and running, so that you can turn the config option off)	
 
-**3601** [MSBlog](http://blogs.msdn.com/b/sqlserverfaq/archive/2009/05/27/info-sql-2000-msde-installation-will-fail-if-you-have-number-of-cpus-on-a-box-which-is-not-in-power-of-2.aspx): 
-Appears to disable CPU instruction prefetching. The Blog post to the right uses it, in concert with 3603, to enable SQL 2000 to run on a machine with a # of processors that is *not* a power of 2.
+**3601** Appears to disable CPU instruction prefetching. The Blog post to the right uses it, in concert with 3603, to enable SQL 2000 to run on a machine with a # of processors that is *not* a power of 2.
+[MSBlog](http://blogs.msdn.com/b/sqlserverfaq/archive/2009/05/27/info-sql-2000-msde-installation-will-fail-if-you-have-number-of-cpus-on-a-box-which-is-not-in-power-of-2.aspx)
 
-**3603** [MSBlog](http://blogs.msdn.com/b/sqlserverfaq/archive/2009/05/27/info-sql-2000-msde-installation-will-fail-if-you-have-number-of-cpus-on-a-box-which-is-not-in-power-of-2.aspx): 
-Disables “Simultaneous Multithreading Processor check”. Used in concern with 3601 in the blog post to the right to enable SQL 2000 to run on a machine with a # of processors that is *not* a power of 2.
+**3603** Disables "Simultaneous Multithreading Processor check". Used in concern with 3601 in the blog post to the right to enable SQL 2000 to run on a machine 
+with a # of processors that is *not* a power of 2. 
+[MSBlog](http://blogs.msdn.com/b/sqlserverfaq/archive/2009/05/27/info-sql-2000-msde-installation-will-fail-if-you-have-number-of-cpus-on-a-box-which-is-not-in-power-of-2.aspx)
+
+
+
+
+#### NOTE: the interaction between 6531, 6532, 6533, and 6534 is a complicated and unclear. Review all of the notes for them (including any links to BOL or KBs) 
+before using even just one of them.
 
 **6531** Enables adjustment in the SQLOS scheduling layer to handle queries that issue many short-duration calls to spatial data (which is implemented via CLR functions).
 [3005300](http://support.microsoft.com/kb/3005300): "This fix introduces the trace flag 6531 to indicate to the SQLOS hosting layer that the spatial data type should avoid 
@@ -29,39 +42,57 @@ preemptive protections. This can reduce the CPU consumption and improve the over
 method invocations (per row and column) take less than ~4ms. Longer invocations without preemptive protection could lead to scheduler concurrency issues and SQLCLR 
 punishment messages logged to the error log."
 
-**6533** [3107399](https://support.microsoft.com/en-us/kb/3107399): "… improves performance of query operations with spatial data types in SQL Server 2012 and 2014. The 
-performance gain will vary, depending on the configuration, the types of queries, and the objects." Note that [3132545](https://support.microsoft.com/en-us/kb/3132545) warns 
-against using the STRelate and STAsBinary functions when TF 6533 is on, as those functions can return unexpected results. 	
+**6532** **Doc2014** BOL: "Enables performance improvement of query operations with spatial data types in SQL Server 2012 and SQL Server 2014. 
+The performance gain will vary, depending on the configuration, the types of queries, and the objects. Note: Beginning with SQL Server 2016 this 
+behavior is controlled by the engine and trace flag 6532 has no effect. Scope: global and session"
+[3107399](https://support.microsoft.com/en-us/kb/3107399)
 
-**8002** Kalen2008, p24: if you specify a CPU mask because you want to limit the # of CPUs your instance can use (e.g. say you have multiple instances and you want to 
-partition the processing on the box), but you still want your schedulers to be able to move between their affinitized CPUs, turn this flag on.
-Note that the first 2 KB articles to the right are practically identical. Also, note that some of the KB articles are written for SQL 2000.
+**6533** **Doc2014** BOL: "Enables performance improvement of query operations with spatial data types in SQL Server 2012 and SQL Server 2014. 
+The performance gain will vary, depending on the configuration, the types of queries, and the objects. Note: Beginning with SQL Server 2016 
+this behavior is controlled by the engine and trace flag 6533 has no effect. Scope: global and session". 3107399: "Known issue: The STRelate and STAsBinary 
+functions may return unexpected results when trace flag 6533 is enabled. Do not use this trace flag if your workload involves either of these functions. 
+This issue will be fixed in the next cumulative update for SQL Server 2012 SP3."
+[3107399](https://support.microsoft.com/en-us/kb/3107399) | 
+[3132545](https://support.microsoft.com/en-us/kb/3132545)
+
+**6534** **Doc2014** BOL: "Enables performance improvement of query operations with spatial data types in SQL Server 2012, SQL Server 2014 and SQL Server 2016. 
+The performance gain will vary, depending on the configuration, the types of queries, and the objects. Scope: global and session"
+[3107399](https://support.microsoft.com/en-us/kb/3107399)
+
+
+
+
+**8002** Kalen2008, p24: if you specify a CPU mask because you want to limit the # of CPUs your instance can use (e.g. you have multiple instances and want to 
+partition the processing on the box), but still want your schedulers to be able to move between their affinitized CPUs, turn this flag on.
+The first 2 KB articles to the right are practically identical. Also, note that some of the KB articles are written for SQL 2000.
 [818765](http://support.microsoft.com/default.aspx?scid=kb;en-us;818765) 
 | [818769](http://support.microsoft.com/kb/818769) 
 | [CSS](http://blogs.msdn.com/b/psssql/archive/2011/11/11/sql-server-clarifying-the-numa-configuration-information.aspx) 
 | [921928](http://support.microsoft.com/kb/921928/en-us)
 
 **8008** Khen2005, p383 (paraphrased): sessions normally store the last scheduler that they ran on, and pass this as a hint to SQLOS to encourage SQLOS to 
-schedule the session’s work on the same scheduler as last time (to reuse CPU cache). In some cases, this can cause problems, so TF 8008 forces SQLOS to ignore 
+schedule the session's work on the same scheduler as last time (to reuse CPU cache). In some cases, this can cause problems, so TF 8008 forces SQLOS to ignore 
 this hint and always put new work on the least-loaded scheduler. [CAdkin](http://chrisadkin.org/2015/04/14/well-known-and-not-so-well-known-sql-server-tuning-knobs-and-switches/) 
 has some valuable screenshots showing a much more evenly-balanced distribution of work across CPUs when this flag is on. 
 [CSS](http://blogs.msdn.com/b/psssql/archive/2013/08/13/how-it-works-sql-server-2012-database-engine-task-scheduling.aspx) 
-| [Forum Q](http://www.stillhq.com/sqldownunder/archives/msg05089.html)
+| [Forum](http://www.stillhq.com/sqldownunder/archives/msg05089.html)
 
-**8012** [920093](http://support.microsoft.com/kb/920093): "SQL Server records an event in the schedule ring buffer every time that one of the following events occurs: 
+**8012** **Doc2014** BOL: "Disable the ring buffer for schedulers". [920093](http://support.microsoft.com/kb/920093): "SQL Server records an event in the schedule 
+ring buffer every time that one of the following events occurs: 
 -	A scheduler switches context to another worker. 
 -	A worker is suspended or resumed. 
 -	A worker enters the preemptive mode or the non-preemptive mode. 
 You can use the diagnostic information in this ring buffer to analyze scheduling problems. For example, you can use the information in this 
-ring buffer to troubleshoot problems when SQL Server stops responding. Trace flag 8012 disables recording of events for schedulers." Scope Startup only.
+ring buffer to troubleshoot problems when SQL Server stops responding. Trace flag 8012 disables recording of events for schedulers." Scope: startup only.
 
-**8015** Have SQL [on a NUMA box] pretend it is SMP. Startup flag only. *According to the first CSS link on the right, TF 839 does the same thing (or something similar). 
+**8015** **Doc2014** BOL: "Disable auto-detection and NUMA setup." Have SQL [on a NUMA box] pretend it is SMP. Scope: startup only. 
+*According to the first CSS link on the right, TF 839 does the same thing (or something similar). 
 Not sure why the duplication, perhaps 839 is for SQL 2000?*	
-[CSS](http://blogs.msdn.com/b/psssql/archive/2010/04/02/how-it-works-soft-numa-i-o-completion-thread-lazy-writer-workers-and-memory-nodes.aspx) 
+[2813214](http://support.microsoft.com/kb/2813214/en-us) 
+| [CSS](http://blogs.msdn.com/b/psssql/archive/2010/04/02/how-it-works-soft-numa-i-o-completion-thread-lazy-writer-workers-and-memory-nodes.aspx) 
 | [CSS](http://blogs.msdn.com/b/psssql/archive/2008/09/05/sql-server-2005-setup-fails-in-wow-x86-on-computer-with-more-than-32-cpus.aspx?Redirected=true) 
 | [CSS](http://blogs.msdn.com/b/psssql/archive/2012/12/13/how-it-works-sql-server-numa-local-foreign-and-away-memory-blocks.aspx) (comments)
 | [948450](http://support.microsoft.com/kb/948450) 
-| [2813214](http://support.microsoft.com/kb/2813214/en-us) 
 
 
 **8016** [CSS](http://blogs.msdn.com/b/psssql/archive/2013/08/13/how-it-works-sql-server-2012-database-engine-task-scheduling.aspx): 
@@ -84,12 +115,8 @@ SMP architecture. This flag would override that behavior and cause SQL to start 
 non-yielding scheduler/situation was encountered. The whitepaper linked to on the right gives example output for this flag	
 [DiagCorrect17883etc](http://msdn.microsoft.com/en-us/library/cc917684.aspx)
 
-**8025** Khen2005, p405: SQL on NUMA normally does most of its allocation on Node 1, because usually Windows and other programs will allocate from Node 0. 
-However, if you want SQL to do its resource allocation on the default node (node 0), turn on this flag.
-Bob Ward notes in his SQL 2012 memory talk at PASS 2013 that SQL no longer does this “allocate from Node 1” logic anymore, as Windows has corrected its 
-problems with imbalance in its allocations.	[CSS](http://blogs.msdn.com/b/psssql/archive/2011/11/11/sql-server-clarifying-the-numa-configuration-information.aspx)
 
-**8033** Suppresses messages of the form “The time stamp counter of CPU on scheduler id 1 is not synchronized with other CPUs” from being placed in the SQL Error 
+**8033** Suppresses messages of the form "The time stamp counter of CPU on scheduler id 1 is not synchronized with other CPUs" from being placed in the SQL Error 
 log when CPU drift is noticed.
 [Skorlinski](http://blogs.msdn.com/b/chrissk/archive/2008/06/19/i-o-requests-taking-longer-than-15-seconds-to-complete-on-file.aspx)
 | [931279](http://support.microsoft.com/kb/931279/en-us) 
@@ -108,7 +135,25 @@ at startup to force the use of the 1ms timer." Several vendor links are relevant
 | [HP](http://h20565.www2.hp.com/portal/site/hpsc/template.PAGE/public/kb/docDisplay/?spf_p.tpst=kbDocDisplay&spf_p.prp_kbDocDisplay=wsrp-navigationalState%3DdocId%253Demr_na-c02110402-1%257CdocLocale%253D%257CcalledBy%253D&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken) 
 | [IBM](http://www-947.ibm.com/support/entry/portal/docdisplay?brand=5000008&lndocid=MIGR-5084072)
 
-**8048** For memory objects (CMemObj) that are already partitioned by Node, enabling this (startup-only) flag causes them to be partitioned by CPU instead, 
+
+**8049** Forces use of "Multi-Media" timer for time measurements. 
+This [CSS](http://blogs.msdn.com/b/psssql/archive/2010/08/18/how-it-works-timer-outputs-in-sql-server-2008-r2-invariant-tsc.aspx) article is a great entry point. 
+See also 8038. [972767](http://support.microsoft.com/kb/972767)
+
+
+
+
+## Limited Lifespan
+These flags are specific to older release(s), or even build(s), typically because they enable a specific fix (typically in a CU or hotfix), appear only in CTPs, 
+or have behavior that has been superceded in more recent versions.
+
+**8025** Khen2005, p405: SQL on NUMA normally does most of its allocation on Node 1, because usually Windows and other programs will allocate from Node 0. 
+However, if you want SQL to do its resource allocation on the default node (node 0), turn on this flag.
+Bob Ward notes in his SQL 2012 memory talk at PASS 2013 that SQL no longer does this "allocate from Node 1" logic anymore, as Windows has corrected its 
+problems with imbalance in its allocations.	[CSS](http://blogs.msdn.com/b/psssql/archive/2011/11/11/sql-server-clarifying-the-numa-configuration-information.aspx)
+
+
+**8048** **Doc2014** For memory objects (CMemObj) that are already partitioned by Node, enabling this (startup-only) flag causes them to be partitioned by CPU instead, 
 which can reduce CMEMTHREAD and SOS_SUSPEND_QUEUE waits in some circumstances. No longer functional in SQL 2016. 
 [CSS 1](http://blogs.msdn.com/b/psssql/archive/2012/12/20/how-it-works-cmemthread-and-debugging-them.aspx) 
 | [CSS 2](http://blogs.msdn.com/b/psssql/archive/2011/09/01/sql-server-2008-2008-r2-on-newer-machines-with-more-than-8-cpus-presented-per-numa-node-may-need-trace-flag-8048.aspx) 
@@ -118,8 +163,9 @@ which can reduce CMEMTHREAD and SOS_SUSPEND_QUEUE waits in some circumstances. N
 | [2887888](http://support.microsoft.com/kb/2887888/en-us) 
 | [944902](http://support.microsoft.com/kb/944902/en-us)
 
-**8049** Forces use of “Multi-Media” timer for time measurements. 
-This [CSS](http://blogs.msdn.com/b/psssql/archive/2010/08/18/how-it-works-timer-outputs-in-sql-server-2008-r2-invariant-tsc.aspx) article is a great entry point. 
-See also 8038. [972767](http://support.microsoft.com/kb/972767)
 
-
+**8079** **Doc2014** BOL: "Allows SQL Server 2014 SP2 to interrogate the hardware layout and automatically configure Soft-NUMA on systems reporting 8 or more CPUs 
+per NUMA node. The automatic Soft-NUMA behavior is Hyperthread (HT/logical processor) aware. The partitioning and creation of additional nodes scales background 
+processing by increasing the number of listeners, scaling and network and encryption capabilities.
+Note: This trace flag applies to SQL Server 2014 SP2. Beginning with SQL Server 2016 this behavior is controlled by the engine and trace flag 8048 has no effect.
+Scope: global only"

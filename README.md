@@ -10,7 +10,7 @@
 
 *Disclaimer:* The majority of these flags are undocumented by Microsoft, and therefore unsupported. The author has experimented with only a handful of these flags and cannot vouch for complete accuracy in the descriptions provided, nor has authority to do so. The author assumes no responsibility for any negative (or positive!) consequences arising from the use or misuse of these trace flags in any production or non-production environment. Use at your own risk.
 
-*Official Trace Flag Documentation from Microsoft:* 
+*Official Trace Flag Documentation from Microsoft:* (Currently no distinction made betweeen a "2014" version of the page or a "2016" version)
 [Current](http://technet.microsoft.com/en-us/library/ms188396.aspx) 
 | [2012](http://technet.microsoft.com/en-us/library/ms188396(v=sql.110).aspx) 
 | [2008 R2](http://technet.microsoft.com/en-us/library/ms188396(v=sql.105).aspx) 
@@ -26,6 +26,7 @@
 | [Amit Banerjee 2012](http://troubleshootingsql.com/2014/01/20/sql-server-2012-trace-flags/)
 | [Database-Wiki](http://database-wiki.com/2012/10/20/documented-sql-server-trace-flags-use-them-cautiously/)
 | [SQL Handle TF4199 series](http://sql-sasquatch.blogspot.com/2014/01/trace-flag-4199-complex-risk-assessment.html)
+| [Paul Randal presentation](http://www.scribd.com/doc/109431789/Randal-SQL-SDB407-Undocumented)
 
 *Print Sources:*
 At this time, only two print sources have been used, and even these are only source material for a handful of trace flags: 
@@ -33,12 +34,16 @@ Kalen Delaney’s [SQL Server 2008 Internals](https://www.amazon.com/Microsoft%C
 Ken Henderson’s [SQL Server 2005 Practical Troubleshooting: The Database Engine](https://www.amazon.com/SQL-Server-2005-Practical-Troubleshooting/dp/0321447743/ref=sr_1_1?ie=UTF8&qid=1477503810&sr=8-1&keywords=Ken+Henderson+2005) referred to in shorthand as “Khen2005”.
 
 ## Trace Flag Usage and Categorization
-Most (but not all) trace flags can be enabled at SQL Server startup by using the –T (capital letter) startup option. However, most (but not all) trace flags can also be enabled at startup by using the –t (lowercase letter) startup option. (Besides the upper/lowercase difference, the syntax is otherwise identical). However, [this Microsoft article](http://technet.microsoft.com/en-us/library/ms190737.aspx) indicates that other, unknown trace flags are enabled by the lowercase option, and thus the uppercase method should be used except under the direction of Microsoft support.
+Most (but not all) trace flags can be enabled at SQL Server startup by using the –T (capital letter) startup option. However, most (but not all) trace flags can also be enabled 
+at startup by using the –t (lowercase letter) startup option. (Besides the upper/lowercase difference, the syntax is otherwise identical). However, 
+[BOL](https://msdn.microsoft.com/en-us/library/ms190737.aspx) indicates that other, unknown trace flags are enabled by the lowercase option, and thus the uppercase method 
+should be used except under the direction of Microsoft support.
 
 [Be careful](http://blogs.msdn.com/b/psssql/archive/2010/02/19/did-you-start-your-sql-server-engine-correctly.aspx) when adding Trace Flags (or other startup options) to the SQL Server via the Configuration Manager GUI.
 
 Microsoft employee Nacho Alonso Portillo [notes](http://blogs.msdn.com/b/ialonso/archive/2011/12/05/what-is-the-expected-behavior-from-an-attempt-to-enable-a-trace-flag-which-is-not-defined-in-the-targeted-version-of-the-product.aspx) the following about the DBCC TRACEON command:
-- The valid range for trace flags (for 2008 R2 anyways) is -1 to 9299. However, “-1” has the well-known special meaning of enabling/disabling the flag globally. Note that “9299” as an upper limit is clearly dated, as there are now trace flags with #’s higher than 9299, such as the well-known 9481, and apparently even a 10202 in “vNext” (the version after SQL 2014).
+- The valid range for trace flags for 2008 R2 and before is -1 to 9299. (Newer releases have introduced flags higher in the 9000 range and even above 10000)
+- However, “-1” has the well-known special meaning of enabling/disabling the flag globally. Note that “9299” as an upper limit is clearly dated, as there are now trace flags with #’s higher than 9299, such as the well-known 9481, and apparently even a 10202 in “vNext” (the version after SQL 2014).
 - The “-1” wildcard can appear in any position in the DBCC TRACEON syntax, though by convention most online use of it always pushes it to the back of the command, after other TF #’s.
 - Some flags can only be used with the “-T” startup option, and some can only be used with the DBCC TRACEON command. Attempting to enable “-T”-only flags with DBCC TRACEON will result in an error.
 
