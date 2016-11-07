@@ -1,15 +1,25 @@
 # TF Categories
 
+TODO: catch up on latest hotfixes (for 2014 SP2 CU2), any other releases, TF 2389 additions (see my email), and BWard's 2016 Hekaton slides
+
+TODO: [SQL 2000 Optimization/Query Performance Fixes](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/2KOptFixes.md)
+TODO: [SQL 2000 Query Execution](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/2KQueryExec.md)
+TODO: [Pre-SQL 2000 Flags](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Pre2K.md)
+TODO: [TF 4199 and related](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/TF4199.md)
+TODO: [Non-TF4199 Query Performance/Execution fixes](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/NonTF4199Fixes.md)
+TODO: [Mis-labeled, unable to find links, Other](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Other.md)
 
 ## Queries
-1. TODO: [Query Compilation (Info only) and Stats Object-related](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompAndStats.md)
-2. TODO: [Query Compilation Behavioral (Cardinality Estimation only)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompEst.md)
-3. TODO: [Query Compilation Behavioral (except Cardinality Estimation)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompBehav.md)
-4. TODO: [Plan Caching](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/PlanCache.md)
-5. TODO: [Query Syntax/Rules](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/SyntaxRules.md)  (contents are work-in-progress)
-6. TODO: [Query Execution](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/QueryExec.md)
-7. TODO: [TF 4199 and related](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/TF4199.md)
-8. TODO: [Non-TF4199 Query Performance/Execution fixes](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/NonTF4199Fixes.md)
+1. [Statistics and Estimation](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/StatsEst.md)
+2. [Compilation (Informational)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompInfo.md)
+3. [Compilation (Behavioral)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompBehav.md)
+4. [Plan Caching](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/PlanCache.md)
+5. [Query Execution](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/QueryExec.md)
+
+OLD: [Query Compilation (Info only) and Stats Object-related](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompAndStats.md)
+OLD: [Query Compilation Behavioral (Cardinality Estimation only)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompEst.md)
+OLD: [Query Compilation Behavioral (except Cardinality Estimation)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompBehav.md)
+
 
 
 ## Databases 
@@ -34,15 +44,12 @@
 9. [Security](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Security.md)
 10. [Special Features](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/SpecialFeatures.md)
 11. [Exceptions and Memory Dump Behavior](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/ExceptMemDump.md)
-12. TODO: [Non-Optimizer Bug Fixes (contents are work-in-progress)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/NonOptFixes.md)
 
 
-## Legacy and Other
-1. TODO: [SQL 2000 Engine](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/SQL2KEng.md)
-2. TODO: [SQL 2000 Optimization/Query Performance Fixes](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/2KOptFixes.md)
-3. TODO: [SQL 2000 Query Execution](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/2KQueryExec.md)
-4. TODO: [Pre-SQL 2000 Flags](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Pre2K.md)
-5. TODO: [Mis-labeled, unable to find links, Other](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Other.md)
+## Other 
+1. [Other](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/Other.md)
+2. [Mis-labeled, unable to find links, unable to confirm](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/NeedConfirmation.md)
+
 
 
 ## Notes 

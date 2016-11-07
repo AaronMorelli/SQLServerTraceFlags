@@ -13,6 +13,8 @@ The longer descriptions and larger number of links make a table format impractic
 
 TODO: ensure 6531, 6532, 6533, and 6534 probably should be moved to the query execution section (in the fix flags section) and placed in the See Also here
 
+TODO: sort out whether 1216, 1217, 1260, and 1261 (and 1262 minidumping for SQL 2000, see below) should go here or in the lock/wait section
+
 ## Functionality Toggles
 
 **839** (Apparently) forces SQL Server to treate all NUMA memory as "flat", as if it was SMP.
@@ -146,6 +148,17 @@ See also 8038. [972767](http://support.microsoft.com/kb/972767)
 ## Limited Lifespan
 These flags are specific to older release(s), or even build(s), typically because they enable a specific fix (typically in a CU or hotfix), appear only in CTPs, 
 or have behavior that has been superceded in more recent versions.
+
+**1216** For SQL 7.0, allows the disabling of "extended lock detection" (long blocking scenarios involving worker threads). [319892](https://support.microsoft.com/en-us/kb/319892)
+
+**1217** Allows the disabling of UMS health checks (e.g. if all schedulers are deadlocked) on SQL 7.0. [319892](https://support.microsoft.com/en-us/kb/319892)
+
+**1260** Allows the disabling of hung or non-yielding schedulers on SQL 2000 SP3. [319892](https://support.microsoft.com/en-us/kb/319892)
+
+**1261** For SQL 2000 SP3, allows the disabling of "extended lock detection" (long blocking scenarios involving worker threads). [319892](https://support.microsoft.com/en-us/kb/319892)
+
+**1262** On SQL 2000 (what about newer?) enables a minidump for every occurrence of a 17883/17884 (and possibly others) errors regarding stalled schedulers, rather
+than just one occurrence for the life of the SQL Server process. [319892](https://support.microsoft.com/en-us/kb/319892)
 
 **8025** Khen2005, p405: SQL on NUMA normally does most of its allocation on Node 1, because usually Windows and other programs will allocate from Node 0. 
 However, if you want SQL to do its resource allocation on the default node (node 0), turn on this flag.

@@ -13,6 +13,7 @@ See also: 2456 [Locking and Waiting](https://github.com/AaronMorelli/SQLServerTr
 
 | Flag | Description | Links |
 | ---------- | ----------- | -------- |
+| 822 | (Very old, needs verification) Used in SQL 2000 to work around a bug with Windows XP memory notifications and prevent SQL Server from overcommitting memory. Unclear what the exact functionality is. | [884593](https://support.microsoft.com/en-us/kb/884593) |
 | 834 | (more below) **Doc2014**  SQL allocates memory at startup using Windows Large Pages | | 
 | 835 | BWard PASS 2013 talk: causes SQL to not use the Locked Memory model even when the SKU and the LPIM privilege would normally allow SQL to use the Locked Memory model | | 
 | 836 | KB: SQL sizes BPool at startup based on max server mem instead of on total physical mem. Use to reduce number of buf descriptors that are allocated at startup in 32-bit AWE mode. Startup only. *Slava: way to get SQL 2005 to behavior like SQL 2000 in terms of allocating AWE memory at startup instead of on demand.* | [920093](http://support.microsoft.com/kb/920093); [Slava](http://blogs.msdn.com/b/slavao/archive/2006/08/03/687573.aspx); [CSS](http://blogs.msdn.com/b/psssql/archive/2012/12/11/how-it-works-sql-server-32-bit-pae-awe-on-sql-2005-2008-and-2008-r2-not-using-as-much-ram-as-expected.aspx) | 
@@ -74,7 +75,10 @@ or have behavior that has been superceded in more recent versions.
 
 | Flag | Description | Links |
 | ---------- | ----------- | -------- |
+| 825 | In SQL 2000, enables Buffer Pool support for NUMA. TF 888 must be used. | [921928](http://support.microsoft.com/kb/921928/en-us) | 
+| 888 | KB: "...memory is allocated together with the MEM_PHYSICAL flag by using the Address Windowing Extensions (AWE). When this trace flag and the Lock pages in memory permission are enabled, the following message is logged in the SQL Server error log: 'Using locked pages for buffer pool'" | [921928](http://support.microsoft.com/kb/921928/en-us) | 
 | 845 | Enables support for Locked Pages on Standard Editions of SQL 2005 and 2008 64-bit. Startup only. | [970070](http://support.microsoft.com/kb/970070); [2708594](http://support.microsoft.com/kb/2708594) | 
+| 3940 | Enables throttling of asynchronous writes (I believe what are referred to in modern documents as "Eager Writes") for SQL 2000 when under rare circumstances, an index rebuild could exhaust memory. The KB has a good description of the algorithm for this Eager Write throttling. | [838459](https://support.microsoft.com/en-us/kb/838459) | 
 | 6498 | **Doc2014** BOL: "Enables more than one large query compilation to gain access to the big gateway when there is sufficient memory available. It is based on the 80 percentage of SQL Server Target Memory, and it allows for one large query compilation per 25 gigabytes (GB) of memory. Note: Beginning with SQL Server 2014 SP2 and SQL Server 2016 this behavior is controlled by the engine and trace flag 6498 has no effect. Scope global only" | [3024815](http://support.microsoft.com/kb/3024815/en-us); [CSS](http://blogs.msdn.com/b/sql_server_team/archive/2015/10/09/query-compile-big-gateway-policy-changes-in-sql-server.aspx#.Vhgb1PlViko) | 
 | 8030 | Supplied in a HF for SQL 2005; 64-bit servers w/16+ GB of RAM could encounter problems, symptomized by many dm_os_wait_stats [sic: dm_os_waiting_tasks?] rows with SOS_RESERVEDMEMBLOCKLIST or DBCC MEMORYSTATUS wait types. "This situation indicates that many multipage allocations exist." | [917035](http://support.microsoft.com/kb/917035) | 
 | 8075 | Enables a fix (after applying the appropriate CU) for x64 VAS exhaustion. | [3074434](https://support.microsoft.com/en-us/kb/3074434) | 

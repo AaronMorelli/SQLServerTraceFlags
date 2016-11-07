@@ -1,4 +1,4 @@
-# SQL Miscellaneous Informational (especially re: Error Log)
+# Miscellaneous (mostly informational)
 
 (Reminder: [Official BOL location](http://technet.microsoft.com/en-us/library/ms188396.aspx))
 
@@ -23,4 +23,7 @@ or have behavior that has been superceded in more recent versions.
 
 | Flag | Description | Links |
 | ---------- | ----------- | -------- |
+| 916 | The (very old) KB is confusing. The -y (aka "dumptrigger") startup option is used with 916 to produce stack dumps that are visible by Profiler for error numbers that are *NOT* 916. Its possible this functionality is still present in new versions. | [811476](https://support.microsoft.com/en-us/kb/811476) |
+| 1903 | Enables a fix (in SQL 2000) to change the behavior of fn_trace_gettable so that if it reads a corrupt trace file, instead of terminating with a sev 16 it aborts with a sev 10, allowing the already-read rows to remain in the table. | [911678](https://support.microsoft.com/en-us/kb/911678) |
 | 2520 | **Info** Equivalent of 2588 for SQL 2000 (and below?) | [PRand](http://www.sqlskills.com/blogs/paul/dbcc-writepage/) | 
+| 4133 | "FIX: The size of the SQL Server 2005 error log file or of the SQL Server 2008 error log file grows very quickly when query notifications are created and destroyed in a high ratio" | [958006](https://support.microsoft.com/en-us/kb/958006) | 

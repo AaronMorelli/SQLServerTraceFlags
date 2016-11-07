@@ -4,7 +4,6 @@
 
 See also: 3101 (bypasses a CDC upgrade operation that can cause slow RESTORES) and 9958 (enables a fix for a Hekaton log restore bug) [Backup and Restore](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/BackupRestore.md)
 
-TODO: is 9929 a fix flag?
 
 ## Functionality Toggles
 
@@ -15,6 +14,8 @@ TODO: is 9929 a fix flag?
 | 7603 | Ditto | | 
 | 7604 | Ditto | | 
 | 7605 | Ditto | | 
+| 7608 | Appears to enable the full-text crawling process to use non-clustered unique indexes, improving performance. The KB implies that enabling this flag is *still* required even in modern versions. | [938672](https://support.microsoft.com/en-us/kb/938672) | 
+| 7613 | Appears to enable a regression to SQL 2000 behavior regarding how words inside double-quoted phrases are handled by the full-text search FREETEXT predicate. | [927643](https://support.microsoft.com/en-us/kb/927643) | 
 | 8011 | Appears to disable the Resource Monitor ring buffer. Scope global. | [920093](http://support.microsoft.com/kb/920093) | 
 | 8040 | Kalen2008, p52: Disables Resource Governor; Similar behavior occurs if you use the –m or  –f startup options | | 
 | 8295 | (more below) Modifies index definition for index added to internal/hidden Change Tracking tables. | | 
@@ -30,6 +31,8 @@ or have behavior that has been superceded in more recent versions.
 
 | Flag | Description | Links |
 | ---------- | ----------- | -------- |
+| 7614 | Appears to modify full-text index population behavior (in SQL 2005 SP2) so that indexed view matching can actually occur rather than the view ref being resolved to the underlying tables, improving performance. (Perhaps via the NOEXPAND hint)  | [928537](https://support.microsoft.com/en-us/kb/928537) | 
+| 7646 | Appears to relieve blocking issues in SQL 2008/2008 R2 full text search when a high frequency of updates are occurring and being pushed to an internal FTS table.  | [FTS Whitepaper](https://technet.microsoft.com/en-us/library/cc721269(SQL.100).aspx#_Toc202506243); [DynamicsBlog](https://blogs.msdn.microsoft.com/axinthefield/sql-server-trace-flags-for-dynamics-ax/); [Blog](https://sqldev.wordpress.com/2008/09/16/sql-server-2008-full-text-slowness/); [Ozar](https://stackoverflow.blog/2008/11/sql-2008-full-text-search-problems/) |
 | 9989 | In 2014 CTP2, enabled functionality for reading in-memory tables on a readable secondary | [Connect](https://connect.microsoft.com/SQLServer/feedback/details/795360/secondary-db-gets-suspect-when-i-add-in-memory-table-to-db-which-is-part-of-alwayson-availability-group) | 
 | 9929 | Works around a condition where DML (e.g. index rebuild) on disk-based tables causes an excessive number of checkpoint files to be generated for in-memory tables. | [3147012](https://support.microsoft.com/en-us/kb/3147012) | 
 

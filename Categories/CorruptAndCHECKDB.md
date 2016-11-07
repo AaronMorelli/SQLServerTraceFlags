@@ -6,6 +6,8 @@ See also:
 
 TODO: Strongly consider combining this and the BackupRestore section somehow
 
+TODO: Reconsider where 2509 and 2514 go. (Have to do with file/page internals, but activated by DBCC CHECKDB)
+
 ## Functionality Toggles
 
 | Flag | Description | Links |
@@ -15,7 +17,7 @@ TODO: Strongly consider combining this and the BackupRestore section somehow
 | 818 | (more below) Tracks info re: writes in a ring buffer to catch problems with IO subsystem  | | 
 | 831 | Randal-SQL-SDB407: "Protect unchanged pages in the buffer pool to catch memory corruptions." | [Randal-SQL-SDB407](http://www.scribd.com/doc/109431789/Randal-SQL-SDB407-Undocumented) | 
 | 2508 | TODO: experiment to see if this has any kernel of truth, may just be a typo of 2528:  Social.Technet: Disables parallel non-clustered index checking for DBCC CHECKTABLE" | [Social.Technet](http://social.technet.microsoft.com/wiki/contents/articles/13105.trace-flags-in-sql-server.aspx) | 
-| 2514 | **Into** Used with DBCC CHECKTABLE to see the total count of ghost records in a table. | [Argenis](http://sqlblog.com/blogs/argenis_fernandez/archive/2012/05/29/ghost-records-backups-and-database-compression-with-a-pinch-of-security-considerations.aspx) | 
+| 2514 | **Info** Used with DBCC CHECKTABLE to see the total count of ghost records in a table. | [Argenis](http://sqlblog.com/blogs/argenis_fernandez/archive/2012/05/29/ghost-records-backups-and-database-compression-with-a-pinch-of-security-considerations.aspx) | 
 | 2528 | (more below) Disables parallel processing for CHECKDB | | 
 | 2529 | **Info?** Full functionality unknown, but appears to print memory usage for CHECKDB (memory that appears to be allocated via an “IMemObj” interface) at the very beginning and very end of CHECKDB output. | [SQLService.se](http://sqlservice.se/sv/start/blogg/updated-microsoft-sql-server-trace-flag-list.aspx) | 
 | 2549 | (more below) Causes CHECKDB to consider each separate DB file as being on a unique drive | | 
@@ -88,3 +90,7 @@ and can reduce contention on the DBCC_MULTIOBJECT_SCANNER latch. Using the flag 
 ## Limited Lifespan
 These flags are specific to older release(s), or even build(s), typically because they enable a specific fix (typically in a CU or hotfix), appear only in CTPs, 
 or have behavior that has been superceded in more recent versions.
+
+| Flag | Description | Links |
+| ---------- | ----------- | -------- |
+| 2509 | The only reference I can find is found in Ken Henderson’s Guru’s Guide to T-SQL, on page 503 (found via books.google.com): "Used in conjunction with DBCC CHECKTABLE to see the total count of ghost records in a table." Maybe the SQL 2000 corollary to 2514 in modern builds?  | | 
