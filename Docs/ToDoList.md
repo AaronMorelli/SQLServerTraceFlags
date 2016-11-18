@@ -19,3 +19,17 @@ TODO: [Mis-labeled, unable to find links, Other](https://github.com/AaronMorelli
 Remove these files from my repo, never used
 OLD: [Query Compilation (Info only) and Stats Object-related](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompAndStats.md)
 OLD: [Query Compilation Behavioral (Cardinality Estimation only)](https://github.com/AaronMorelli/SQLServerTraceFlags/blob/master/Categories/CompEst.md)
+
+Review these links:
+
+https://support.microsoft.com/en-us/kb/3194716
+https://support.microsoft.com/en-us/kb/3195813
+https://support.microsoft.com/en-us/kb/3199171
+https://support.microsoft.com/en-us/kb/3194717
+https://support.microsoft.com/en-us/kb/3182545
+https://support.microsoft.com/en-us/kb/3164398
+https://support.microsoft.com/en-us/kb/3194718
+https://support.microsoft.com/en-us/kb/3194714
+https://support.microsoft.com/en-us/kb/3194722
+https://sqlperformance.com/2016/11/sql-server-2016/big-deal-sp1		I need to check out the release services link. Also, smoewhere there
+	is a list of TFs and the new USE HINT options they map to, that I need to record.
