@@ -33,3 +33,10 @@ https://support.microsoft.com/en-us/kb/3194714
 https://support.microsoft.com/en-us/kb/3194722
 https://sqlperformance.com/2016/11/sql-server-2016/big-deal-sp1		I need to check out the release services link. Also, smoewhere there
 	is a list of TFs and the new USE HINT options they map to, that I need to record.
+	
+https://blogs.msdn.microsoft.com/sqlreleaseservices/sql-server-2016-service-pack-1-sp1-released/
+
+https://blogs.msdn.microsoft.com/sql_server_team/query-progress-anytime-anywhere/
+
+https://support.microsoft.com/en-us/kb/3210239?sd=rss&spid=17645
+
